@@ -1,0 +1,9 @@
+.env
+.git
+firmware
+__pycache__
+.env.*
+HANDOFF.md
+captures
+dist
+*.ndjson

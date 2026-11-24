@@ -1,0 +1,14 @@
+.env
+.pio/
+__pycache__/
+firmware/include/settings.h
+.env.*
+HANDOFF.md
+captures/
+*.ndjson
+*.ndj
+*.hold
+*.open
+*.bin
+*.elf
+.DS_Store

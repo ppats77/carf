@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: carf
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run python3 setup_env.py}
+      WRITER_PASSWORD: ${WRITER_PASSWORD:?Missing writer password}
+      READER_PASSWORD: ${READER_PASSWORD:?Missing reader password}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/fleet.sql:/docker-entrypoint-initdb.d/02-fleet.sql:ro
+      - ./db/init.sql:/docker-entrypoint-initdb.d/01-carf.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "PGPASSWORD=\"$${READER_PASSWORD}\" psql -w -h 127.0.0.1 -U carf_reader -d carf -c 'SELECT 1 FROM public.readings LIMIT 0'"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  receiver:
+    build: .
+    image: ${COMPOSE_PROJECT_NAME:-carf}-app:local
+    restart: unless-stopped
+    environment:
+      PGHOST: db
+      PGDATABASE: carf
+      PGUSER: carf_writer
+      PGPASSWORD: ${WRITER_PASSWORD:?Missing writer password}
+      CARF_UPLOAD_TOKEN: ${CARF_UPLOAD_TOKEN:?Missing upload token}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${CARF_BIND:-0.0.0.0}:${CARF_PORT:-8787}:8787"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8787/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  mcp:
+    image: ${COMPOSE_PROJECT_NAME:-carf}-app:local
+    profiles: ["tools"]
+    command: ["python", "mcp_server.py"]
+    environment:
+      PGHOST: db
+      PGDATABASE: carf
+      PGUSER: carf_reader
+      PGPASSWORD: ${READER_PASSWORD:?Missing reader password}
+volumes:
+  pgdata:
