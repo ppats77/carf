@@ -19,7 +19,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid #c45531; outline-offs
 .mast, nav, .actions, .bench-label, .demo-bar, footer { display: flex; align-items: center; }
 .mast { min-height: 5.3rem; justify-content: space-between; border-bottom: 1px solid var(--line); }
 .wordmark { width: 7.7rem; height: auto; }
-.mast img, footer img { display: block; image-rendering: pixelated; }
+.mast img, footer img { display: block; }
 nav { gap: clamp(.9rem, 3vw, 2.6rem); }
 nav a, footer a { font-size: .92rem; font-weight: 650; text-decoration: none; }
 .nav-source { border: 1px solid #8d9d92; border-radius: .35rem; padding: .5rem 1rem; }
