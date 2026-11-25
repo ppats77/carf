@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142b30">
+  <meta name="description" content="CARF records OBD-II trips on a pocket-sized logger. Build the Core2 firmware, save readings to microSD, and explore them on your own server.">
+  <title>CARF — OBD-II trip logger</title>
+  <link rel="icon" href="assets/mark.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap mast">
+  <a href="./" aria-label="CARF home"><img class="wordmark" src="assets/carf.png" width="91" height="21" alt="CARF"></a>
+  <nav aria-label="Main navigation"><a href="#operation">How it works</a><a href="#profiles">Vehicle profiles</a><a class="nav-source" href="https://github.com/ppats77/carf">GitHub</a></nav>
+</header>
+<main id="main">
+  <section class="wrap hero" aria-labelledby="title">
+    <div class="intro">
+      <p class="kicker"><span class="stripe" aria-hidden="true"></span> OBD-II trip logger</p>
+      <h1 id="title">Your drive,<br><em>on record.</em></h1>
+      <p class="lead">Build a pocket-sized logger for your car. Capture readings on the road, sync them at home, and ask questions about the trip.</p>
+      <div class="actions"><a class="button primary" href="https://github.com/ppats77/carf/blob/main/firmware/README.md">Build the logger</a><a class="source" href="https://github.com/ppats77/carf">Browse the source</a></div>
+    </div>
+    <div class="instrument">
+      <div class="bench">
+        <div class="bench-label"><span>Core2 display</span><span>320 × 240</span></div>
+        <div class="housing">
+          <img id="screen" src="assets/drive.png" width="320" height="240" alt="Simulated driving screen with 1,852 RPM, 48 km/h and 86 °C coolant.">
+          <div class="touch-marks" aria-hidden="true"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="demo-bar"><span class="demo-caption">Screen demo</span>
+        <div class="switches" role="group" aria-label="Preview dashboard state" hidden>
+          <button type="button" data-screen="drive" aria-pressed="true">Driving</button>
+          <button type="button" data-screen="storage" aria-pressed="false">No card</button>
+          <button type="button" data-screen="paused" aria-pressed="false">Paused</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="operation" class="operation">
+    <div class="wrap">
+      <h2>From the OBD port to a trip log.</h2>
+      <div class="flow">
+        <article><span class="stage">In the car</span><h3>Read the signals</h3><p>The OBDLink MX+ sends supported engine, speed, and coolant readings directly to the Core2 over Bluetooth.</p></article>
+        <article><span class="stage">On the road</span><h3>Save each sample</h3><p>The Core2 timestamps readings and writes them to microSD. Trips can be recorded with home Wi-Fi out of range.</p></article>
+        <article><span class="stage">At home</span><h3>Explore the trip</h3><p>Home Wi-Fi carries saved batches to your PostgreSQL receiver. A read-only MCP connection lets you query the trip with an LLM.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="wrap fleet" id="profiles">
+    <div><p class="kicker"><span class="stripe" aria-hidden="true"></span> Vehicle profiles</p><h2>What can your<br>car tell you?</h2><p>Start with generic OBD-II. Select a vehicle profile to request extra signals when the car supports them.</p><a class="source" href="https://github.com/ppats77/carf/blob/main/VEHICLES.md">Read the signal guide</a></div>
+    <dl class="models">
+      <div><dt><small>2009</small> Toyota Sienna</dt><dd>Short- and long-term fuel trims</dd></div>
+      <div><dt><small>2017</small> BMW X3 xDrive35i</dt><dd>Engine oil and transmission temperatures</dd></div>
+      <div><dt><small>2007</small> BMW 335i Convertible</dt><dd>Direct-injection fuel rail pressure</dd></div>
+      <div><dt><small>2005</small> Toyota Prius</dt><dd>Hybrid battery charge, current, and block voltages</dd></div>
+    </dl>
+  </section>
+</main>
+<footer class="wrap"><a href="./" aria-label="CARF home"><img src="assets/carf.png" width="91" height="21" alt="CARF"></a><a href="https://github.com/ppats77/carf/issues">Project issues</a></footer>
+<script src="screen.js"></script>
+</body>
+</html>

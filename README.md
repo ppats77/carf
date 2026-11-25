@@ -1,5 +1,7 @@
 # CARF
 
+[Visit the CARF project page](https://ppats77.github.io/carf/) for a preview of the Core2 dashboard and a guide to the logger.
+
 CARF records trips on an M5Stack Core2 v1.3 paired with an OBDLink MX+. It saves readings to microSD, uploads them on home Wi-Fi, and lets an LLM inspect the saved trips through MCP. Core2 records standard readings and has selectable profiles for the 2009 Sienna, 2017 X3 xDrive35i, 2007 335i convertible and 2005 Prius. See the [vehicle signals and CAN collection guide](VEHICLES.md).
 
 ```text
