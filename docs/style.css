@@ -42,6 +42,8 @@ h1 em { color: var(--red); }
 .bench-label { position: absolute; inset: .95rem 1.1rem auto; justify-content: space-between; color: var(--muted); font-size: .75rem; }
 .housing { width: min(88%, 22rem); border-radius: 1.7rem; border: 2px solid #46514f; padding: 1.05rem .95rem .45rem; background: linear-gradient(145deg,#2e3838,#101b1d 75%); box-shadow: inset 0 2px 1px #5c6662, 0 4px 0 #07191c, 0 12px 18px -9px #50655b; }
 .housing img { width: 100%; height: auto; image-rendering: pixelated; display: block; border-radius: .18rem; }
+.display-frame { position: relative; }
+.display-brand { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .touch-marks { display: flex; justify-content: space-around; padding-top: .5rem; }
 .touch-marks i { width: 1.2rem; height: .13rem; border-radius: 1rem; background: #687370; }
 .demo-bar { justify-content: space-between; border-top: 1px solid #bdc8bc; padding: .65rem 1rem; gap: .5rem; background: #f4f3ea; }

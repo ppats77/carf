@@ -28,7 +28,13 @@
       <div class="bench">
         <div class="bench-label"><span>Core2 display</span><span>320 × 240</span></div>
         <div class="housing">
-          <img id="screen" src="assets/drive.png" width="320" height="240" alt="Simulated driving screen with 1,852 RPM, 48 km/h and 86 °C coolant.">
+          <div class="display-frame">
+            <img id="screen" src="assets/drive.png" width="320" height="240" alt="Simulated driving screen with 1,852 RPM, 48 km/h and 86 °C coolant.">
+            <svg class="display-brand" viewBox="0 0 320 240" aria-hidden="true" focusable="false">
+              <rect x="10" y="7" width="95" height="25" fill="#f7efe7"/>
+              <image href="assets/carf.svg" x="12" y="9" width="91" height="21"/>
+            </svg>
+          </div>
           <div class="touch-marks" aria-hidden="true"><i></i><i></i><i></i></div>
         </div>
       </div>
